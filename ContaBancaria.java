@@ -29,12 +29,12 @@ public class ContaBancaria {
             System.out.print("Escolha: ");
 
             opcao = sc.nextInt();
-            sc.nextLine(); // Limpa o buffer após nextInt()
+            sc.nextLine(); 
 
             if (opcao == 1) {
                 System.out.print("Digite quanto deseja depositar: ");
                 double valor = sc.nextDouble();
-                sc.nextLine(); // Limpa o buffer após nextDouble()
+                sc.nextLine(); 
                 if (valor <= 0) {
                     System.out.println("Valor inválido para depósito.");
                 } else {
@@ -45,7 +45,7 @@ public class ContaBancaria {
             } else if (opcao == 2) {
                 System.out.print("Digite quanto deseja sacar: ");
                 double valor = sc.nextDouble();
-                sc.nextLine(); // Limpa o buffer após nextDouble()
+                sc.nextLine(); 
                 if (valor <= 0) {
                     System.out.println("Valor inválido para saque.");
                 } else if (valor > minhaConta.saldo) {
