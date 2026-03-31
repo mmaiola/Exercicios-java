@@ -7,10 +7,10 @@ public class BancoSQL {
 
         Scanner sc = new Scanner(System.in);
 
-        // Conecta no banco H2
+
         Connection con = DriverManager.getConnection("jdbc:h2:tcp://localhost/C:/Users/mmaiola/Desktop/Env/BancoSQL", "sa", "");
 
-        // Cria a tabela se não existir
+        
         con.createStatement().execute(
             "CREATE TABLE IF NOT EXISTS contas (id INT AUTO_INCREMENT PRIMARY KEY, titular VARCHAR(100), saldo DOUBLE)"
         );
@@ -31,7 +31,7 @@ public class BancoSQL {
             saldo = rs.getDouble("saldo");
             System.out.println("Conta encontrada! Saldo: R$ " + saldo);
         } else {
-            // Conta nova — insere no banco
+      
             PreparedStatement insert = con.prepareStatement(
                 "INSERT INTO contas (titular, saldo) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS
             );
@@ -44,7 +44,7 @@ public class BancoSQL {
             System.out.println("Conta criada com saldo R$ 300,00!");
         }
 
-        // Menu
+   
         int opcao = 0;
 
         while (opcao != 4) {
