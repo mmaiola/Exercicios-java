@@ -1,0 +1,87 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class JogoForca {
+    public static void main(String[] args) {
+
+        String[] palavras = {
+                "java", "carro", "mouse", "teclado", "programacao",
+                "abacaxi", "biblioteca", "cachoeira", "desentupidor",
+                "esmeralda", "foguete", "girassol", "hemisferio",
+                "itinerario", "jangada", "kiwi", "labirinto",
+                "manteiga", "nebulosa", "orquestra", "paralelepipedo","computador",
+                "quarentena", "relogio", "sinfonia", "travesseiro",
+                "ampulheta", "basquete", "condominio", "crepusculo",
+                "dedicatoria", "embaixada", "ferrugem", "gancho", "gabriel",
+                "hipopotamo", "incenso", "jogador", "labareda",
+                "monociclo", "narciso", "obstaculo", "periscopio",
+                "rascunho", "serpente", "transeunte", "amanhecer"
+        };
+
+
+        Random aleatorio = new Random();
+        String palavra = palavras[aleatorio.nextInt(palavras.length)];
+
+        char[] progresso = new char[palavra.length()];
+
+        for (int i = 0; i < progresso.length; i++) {
+            progresso[i] = '_';
+        }
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("A palavra tem " + palavra.length() + " letras.");
+        int tentativas = 6;
+
+        String letrasUsadas = "";
+
+        while (true) {
+
+            System.out.println("\nLetras usadas: " + letrasUsadas);
+
+            for (char c : progresso) {
+                System.out.print(c + " ");
+            }
+
+            System.out.println("\nTentativas restantes: " + tentativas);
+
+            System.out.print("Digite uma letra: ");
+            char letra = sc.next().charAt(0);
+
+            if (letrasUsadas.indexOf(letra) != -1) {
+                System.out.println("Você já digitou essa letra!");
+                continue;
+            }
+
+            letrasUsadas += letra + " ";
+
+            boolean acertou = false;
+
+            for (int i = 0; i < palavra.length(); i++) {
+                if (palavra.charAt(i) == letra) {
+                    progresso[i] = letra;
+                    acertou = true;
+                }
+            }
+
+            if (!acertou) {
+                tentativas--;
+                System.out.println("Errou!");
+            } else {
+                System.out.println("Acertou!");
+            }
+
+            if (String.valueOf(progresso).equals(palavra)) {
+                System.out.println("\nVocê ganhou! A palavra era: " + palavra);
+                break;
+            }
+
+            if (tentativas == 0) {
+                System.out.println("\nVocê perdeu! A palavra era: " + palavra);
+                break;
+            }
+        }
+
+        sc.close();
+    }
+}
