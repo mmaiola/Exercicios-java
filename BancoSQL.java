@@ -18,7 +18,7 @@ public class BancoSQL {
         String titular = "Matheus";
         double saldo = 300.0;
 
-        // Verifica se a conta já existe no banco
+     
         PreparedStatement busca = con.prepareStatement("SELECT * FROM contas WHERE titular = ?");
         busca.setString(1, titular);
         ResultSet rs = busca.executeQuery();
@@ -26,7 +26,7 @@ public class BancoSQL {
         int id;
 
         if (rs.next()) {
-            // Conta encontrada — carrega os dados
+            
             id    = rs.getInt("id");
             saldo = rs.getDouble("saldo");
             System.out.println("Conta encontrada! Saldo: R$ " + saldo);
